@@ -6,7 +6,7 @@
 /*   By: rayderha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:54:20 by rayderha          #+#    #+#             */
-/*   Updated: 2023/12/07 15:27:48 by rayderha         ###   ########.fr       */
+/*   Updated: 2023/12/08 11:44:29 by rayderha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <time.h>
+#include "ft_printf.h"
 
-int		ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
 	int		i;
 
@@ -87,10 +88,17 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
+#include <stdio.h>
+
 int	main(int ac, char **av)
 {
-	const char *chaine = av[1];
-	printf("%d\n", ft_printf("salut%s\n", chaine));
-	printf("%d\n", printf("salut%s\n", chaine));
+	if (ac > 1)
+	{
+		const char *chaine = av[1];
+	ft_printf("acoucou %s !!!", chaine);
+	//printf("%d\n", ft_printf("salut%s\n", chaine));
+	//printf("%d\n", printf("salut%s\n", chaine));	
+	}
+
 	return 0;
 }
