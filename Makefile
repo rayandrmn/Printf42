@@ -15,7 +15,7 @@
 
 NAME = libftprintf.a
 SOURCES = \
-	ft_itoa.c ft_printf.c ft_putnbr.c ft_size.c ft_puthexa.c
+	ft_itoa.c ft_printf.c ft_putnbr.c ft_size.c ft_puthexa.c ft_putnbr_unsigned.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

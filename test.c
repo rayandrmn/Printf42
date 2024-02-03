@@ -7,9 +7,10 @@ int	main(int ac, char **av)
 	{
 		int i = -1;
 	const char *chaine = av[1];
-	ft_printf("ft_printf : %X \n", -10);
-	printf("printf : %X \n", -10);
-	//printf("%d\n", printf("salut%s\n", chaine));	
+	printf("le nombre ft : %d \n",ft_printf("printf : %%, %c, %d, %i, %p, %X, %x, %s    \n", 'c', -42, 42, &chaine, 36, 36, "salut"));
+	printf("le nombre ft : %d \n",printf("printf : %%, %c, %d, %i, %p, %X, %x, %s    \n", 'c', -42, 42, &chaine, 36, 36, "salut"));
+	//printf("\n%d\n", ft_printf("salut%p\n", &chaine));
+	//printf("\n%d\n", printf("salut%p\n", &chaine));	
 	}
 
 	return 0;

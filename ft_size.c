@@ -14,20 +14,20 @@
 
 int	malloc_size(int n)
 {
-        int  i;
+	int	i;
 
-        i = 0;
-        if (n == 0)
-                return (1);
+	i = 0;
+	if (n == 0)
+		return (1);
 	if (n < 0)
 	{
 		i++;
 		n *= -1;
 	}
-        while (n != 0)
-        {
-                n /= 10;
-                i++;
-        }
-        return (i);
+	while (n != 0)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
 }

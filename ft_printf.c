@@ -54,7 +54,7 @@ int	checksign(const char *str, int i, va_list ap)
 		return (ft_putstr(va_arg(ap, char *)));
 	else if (str[i + 1] == 'p')
 		return (ft_itoa(va_arg(ap, unsigned long long int),
-				||"0123456789abcdef"));
+				"0123456789abcdef"));
 	else if (str[i + 1] == 'd')
 		return (ft_putnbr(va_arg(ap, int), 10));
 	else if (str[i + 1] == 'i')
@@ -67,6 +67,7 @@ int	checksign(const char *str, int i, va_list ap)
 		return (ft_puthexa(va_arg(ap, unsigned int), "0123456789ABCDEF"));
 	else
 		return (ft_putchar(str[i + 1]));
+	return (0);
 }
 
 int	ft_printf(const char *str, ...)
