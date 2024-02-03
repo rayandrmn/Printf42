@@ -6,7 +6,7 @@
 /*   By: rayderha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/01 15:54:20 by rayderha          #+#    #+#             */
-/*   Updated: 2023/12/08 11:44:29 by rayderha         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:34:21 by rayderha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	ft_putchar(char c)
+int	ft_putchar(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }
 
 int	ft_putstr(const char *str)
@@ -49,13 +50,33 @@ int	checksign(const char *str, int i, va_list ap)
 		ft_putchar(va_arg(ap, int));
 		return (1);
 	}
-	else if (str[i + 1 == 's'])
+	else if (str[i + 1] == 'x')
 	{
 		return (ft_putstr(va_arg(ap, char *)));
 	}
 	else if (str[i + 1] == 'p')
 	{
-		return (0);
+		return (ft_itoa(va_arg(ap, unsigned long long int), "0123456789abcdef"));
+	}
+	else if (str[i + 1] == 'd')
+	{
+		int	i;
+		int	n;
+		
+		n = va_arg(ap, int);
+		i = n;
+		ft_putnbr(n);
+		return (malloc_size(i));
+	}
+	else if (str[i + 1] == 'i')
+	{       
+		int     i;
+		int     n;
+
+                n = va_arg(ap, int);
+                i = n;
+                ft_putnbr(n);
+                return (malloc_size(i));
 	}
 	return (0);
 }
@@ -95,9 +116,8 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		const char *chaine = av[1];
-	ft_printf("acoucou %s !!!", chaine);
-	//printf("%d\n", ft_printf("salut%s\n", chaine));
-	//printf("%d\n", printf("salut%s\n", chaine));	
+	printf("le printf return : %d \n ", printf("%d", 0));
+	printf("le nombre return : %d", ft_printf("%d", 0));
 	}
 
 	return 0;

@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rayderha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 20:40:12 by rayderha          #+#    #+#             */
-/*   Updated: 2024/01/26 13:33:03 by rayderha         ###   ########.fr       */
+/*   Created: 2024/02/02 19:40:50 by rayderha          #+#    #+#             */
+/*   Updated: 2024/02/02 19:41:44 by rayderha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 
-
-#ifndef FT_PRINTF
-# define FT_PRINTF
-
-# include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct compteur
+void	ft_putnbr(int n)
 {
-	int	i;
 
-}	compteur;
+	if (n == -2147483648)
+	{
+		write(1, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n = n * -1;
+	}
+	if (n > 9)
+	{
+		ft_putnbr(n / 10);
+		n = n % 10;
+	}
+	ft_putchar(n + '0');
 
-int	ft_printf(const char *str, ...);
-int	ft_putstr(const char *str);
-int	ft_putchar(char c);
-int	ft_itoa(long long unsigned int n, char *base);
-void	ft_putnbr(int n);
-int	malloc_size(int n);
-
-#endif
+}

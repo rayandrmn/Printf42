@@ -6,52 +6,33 @@
 /*   By: rayderha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 11:40:14 by rayderha          #+#    #+#             */
-/*   Updated: 2023/12/08 11:46:41 by rayderha         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:42:40 by rayderha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 
 #include "ft_printf.h"
+#include <stdio.h>
 
-static size_t	malloc_size(int n)
+int		ft_itoa(long long unsigned int n, char	*base)
 {
-	size_t	i;
+	int	ct;
+	char 	*tab;
+	int	i;
 
+	tab = malloc(sizeof(char) * 16 + 1);
 	i = 0;
-	if (n == 0)
-		return (1);
-	while (n != 0)
+	ct = 0;
+	ct = ct + ft_putstr("Ox");
+	while (n > 0)
 	{
-		n /= 10;
-		i++;
+		tab[i++] = base[n % 16];
+		n /= 16;
 	}
-	return (i);
-}
-
-char	*ft_itoa(int n)
-{
-	char		*tab;
-	size_t		size;
-	long int	num;
-
-	num = n;
-	size = malloc_size(n);
-	if (n < 0)
+	while (i >= 0)
 	{
-		num *= -1;
-		size++;
+		ct += ft_putchar(tab[i--]);
 	}
-	tab = (char *)malloc(sizeof(char) * (size + 1));
-	if (!tab)
-		return (NULL);
-	tab[size] = '\0';
-	while (size--)
-	{
-		tab[size] = num % 10 + '0';
-		num = num / 10;
-	}
-	if (n < 0)
-		tab[0] = '-';
-	return (tab);
+	return (ct);
 }

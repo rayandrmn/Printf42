@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_size.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rayderha <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/07 20:40:12 by rayderha          #+#    #+#             */
-/*   Updated: 2024/01/26 13:33:03 by rayderha         ###   ########.fr       */
+/*   Created: 2024/02/02 20:27:44 by rayderha          #+#    #+#             */
+/*   Updated: 2024/02/02 20:27:45 by rayderha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 
-
-#ifndef FT_PRINTF
-# define FT_PRINTF
-
-# include <stddef.h>
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct compteur
+int	malloc_size(int n)
 {
-	int	i;
+        int  i;
 
-}	compteur;
-
-int	ft_printf(const char *str, ...);
-int	ft_putstr(const char *str);
-int	ft_putchar(char c);
-int	ft_itoa(long long unsigned int n, char *base);
-void	ft_putnbr(int n);
-int	malloc_size(int n);
-
-#endif
+        i = 0;
+        if (n == 0)
+                return (1);
+	if (n < 0)
+	{
+		i++;
+		n *= -1;
+	}
+        while (n != 0)
+        {
+                n /= 10;
+                i++;
+        }
+        return (i);
+}
