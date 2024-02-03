@@ -11,9 +11,6 @@
 /* ************************************************************************** */
 
 #include <stdarg.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <time.h>
 #include "ft_printf.h"
 
 int	ft_strlen(char *str)
@@ -56,19 +53,20 @@ int	checksign(const char *str, int i, va_list ap)
 	else if (str[i + 1] == 's')
 		return (ft_putstr(va_arg(ap, char *)));
 	else if (str[i + 1] == 'p')
-		return (ft_itoa(va_arg(ap, unsigned long long int), "0123456789abcdef"));
+		return (ft_itoa(va_arg(ap, unsigned long long int),
+				||"0123456789abcdef"));
 	else if (str[i + 1] == 'd')
 		return (ft_putnbr(va_arg(ap, int), 10));
 	else if (str[i + 1] == 'i')
-                return (ft_putnbr(va_arg(ap, int), 10));
+		return (ft_putnbr(va_arg(ap, int), 10));
 	else if (str[i + 1] == 'u')
-		return (ft_putnbr(va_arg(ap, unsigned int), 10));
+		return (ft_putnbr_unsigned(va_arg(ap, unsigned int), 10));
 	else if (str[i + 1] == 'x')
 		return (ft_puthexa(va_arg(ap, unsigned int), "0123456789abcdef"));
 	else if (str[i + 1] == 'X')
-                return (ft_puthexa(va_arg(ap, unsigned int), "0123456789ABCDEF"));
-
-	return (0);
+		return (ft_puthexa(va_arg(ap, unsigned int), "0123456789ABCDEF"));
+	else
+		return (ft_putchar(str[i + 1]));
 }
 
 int	ft_printf(const char *str, ...)
@@ -85,7 +83,6 @@ int	ft_printf(const char *str, ...)
 		if (str[i] == '%')
 		{
 			count += checksign(str, i, ap);
-			//printf("count : %d\n", count);
 			i += 2;
 		}
 		else
@@ -98,20 +95,3 @@ int	ft_printf(const char *str, ...)
 	va_end(ap);
 	return (count);
 }
-
-//#include <stdio.h>
-
-//int	main(int ac, char **av)
-//{
-//	if (ac > 1)
-//	{
-//		const char *chaine = av[1];
-//	unsigned int i = 10;
-//	printf("le printf return : %i \n ", printf("%d", 15313545));
-//	printf("le nombre return : %i", ft_printf("%s", NULL));
-
-	
-//	}
-
-//	return 0;
-//}
