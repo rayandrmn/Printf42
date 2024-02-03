@@ -37,9 +37,12 @@ int	ft_putstr(const char *str)
 	int	i;
 
 	i = 0;
+	if (str == NULL)
+		return (0);
 	while (str[i])
 		i++;
-	write(1, str, i);
+	if (i > 0)
+		write(1, str, i);
 	return (i);
 }
 
@@ -50,34 +53,21 @@ int	checksign(const char *str, int i, va_list ap)
 		ft_putchar(va_arg(ap, int));
 		return (1);
 	}
-	else if (str[i + 1] == 'x')
-	{
+	else if (str[i + 1] == 's')
 		return (ft_putstr(va_arg(ap, char *)));
-	}
 	else if (str[i + 1] == 'p')
-	{
 		return (ft_itoa(va_arg(ap, unsigned long long int), "0123456789abcdef"));
-	}
 	else if (str[i + 1] == 'd')
-	{
-		int	i;
-		int	n;
-		
-		n = va_arg(ap, int);
-		i = n;
-		ft_putnbr(n);
-		return (malloc_size(i));
-	}
+		return (ft_putnbr(va_arg(ap, int), 10));
 	else if (str[i + 1] == 'i')
-	{       
-		int     i;
-		int     n;
+                return (ft_putnbr(va_arg(ap, int), 10));
+	else if (str[i + 1] == 'u')
+		return (ft_putnbr(va_arg(ap, unsigned int), 10));
+	else if (str[i + 1] == 'x')
+		return (ft_puthexa(va_arg(ap, unsigned int), "0123456789abcdef"));
+	else if (str[i + 1] == 'X')
+                return (ft_puthexa(va_arg(ap, unsigned int), "0123456789ABCDEF"));
 
-                n = va_arg(ap, int);
-                i = n;
-                ft_putnbr(n);
-                return (malloc_size(i));
-	}
 	return (0);
 }
 
@@ -109,16 +99,19 @@ int	ft_printf(const char *str, ...)
 	return (count);
 }
 
-#include <stdio.h>
+//#include <stdio.h>
 
-int	main(int ac, char **av)
-{
-	if (ac > 1)
-	{
-		const char *chaine = av[1];
-	printf("le printf return : %d \n ", printf("%d", 0));
-	printf("le nombre return : %d", ft_printf("%d", 0));
-	}
+//int	main(int ac, char **av)
+//{
+//	if (ac > 1)
+//	{
+//		const char *chaine = av[1];
+//	unsigned int i = 10;
+//	printf("le printf return : %i \n ", printf("%d", 15313545));
+//	printf("le nombre return : %i", ft_printf("%s", NULL));
 
-	return 0;
-}
+	
+//	}
+
+//	return 0;
+//}

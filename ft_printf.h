@@ -29,7 +29,8 @@ int	ft_printf(const char *str, ...);
 int	ft_putstr(const char *str);
 int	ft_putchar(char c);
 int	ft_itoa(long long unsigned int n, char *base);
-void	ft_putnbr(int n);
+int	ft_putnbr(int n, int base);
 int	malloc_size(int n);
+int	ft_puthexa(unsigned int n, char *base);
 
 #endif
