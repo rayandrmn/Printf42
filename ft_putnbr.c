@@ -27,7 +27,7 @@ int	ft_putnbr(int n, int base)
 		ft_putchar('-');
 		return (ft_putnbr(n * (-1), base) + ++ct);
 	}
-	if (n > base)
+	if (n >= base)
 	{
 		ct = ft_putnbr(n / base, base);
 		return (ct + ft_putnbr(n % base, base));
